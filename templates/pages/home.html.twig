@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Real Agency' %}
+
+{% block body %}
+
+    <div class="bg-light p-5 text-center">
+        <h1>Real Agency</h1>
+        <p>Votre agence, à votre service, pour votre bien.</p>
+    </div>
+
+    <div class="container">
+        <h2>Les derniers biens</h2>
+
+        <div class="row flex">
+            {% for property in properties %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
+                            </h5>
+                            <p class="card-text">{{ property.city }} ({{ property.zipCode }})</p>
+                            <div class="text primary">{{ property.formattedPrice }}€</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
