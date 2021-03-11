@@ -1,3 +1,3 @@
 # RealAgency
 
-A basic agency website to learn Symphony.
+A basic agency website to learn Symfony.
