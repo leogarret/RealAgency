@@ -42,6 +42,9 @@ class AdminPropertyController extends AbstractController {
 
     /**
      * @Route("/admin/property/create", name="admin.property.create")
+     * @param Property $property
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request)
     {
@@ -53,6 +56,7 @@ class AdminPropertyController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($property);
             $this->em->flush();
+            $this->addFlash('success', 'Ajouté avec succès');
             return $this->redirectToRoute('admin.property.index');
         }
 
@@ -63,8 +67,9 @@ class AdminPropertyController extends AbstractController {
     }
 
     /**
-     * @Route("/admin/property/edit-{id}", name="admin.property.edit")
+     * @Route("/admin/property/edit-{id}", name="admin.property.edit", methods="GET|POST")
      * @param Property $property
+     * @param Request $request
      * @return Response
      */
     public function edit(Property $property, Request $request)
@@ -74,6 +79,7 @@ class AdminPropertyController extends AbstractController {
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
+            $this->addFlash('success', 'Modifié avec succès');
             return $this->redirectToRoute('admin.property.index');
         }
 
@@ -81,6 +87,22 @@ class AdminPropertyController extends AbstractController {
             'property' => $property,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/admin/property/edit-{id}", name="admin.property.delete", methods="DELETE")
+     * @param Property $property
+     * @return Response
+     */
+    public function delete(Property $property, Request $request)
+    {
+        if ($this->isCsrfTokenValid('delete' . $property->getId(), $request->get('_token'))) {
+            $this->em->remove($property);
+            $this->em->flush();
+            $this->addFlash('success', 'Supprimé avec succès');
+        }
+
+        return $this->redirectToRoute('admin.property.index');
     }
 
 }
