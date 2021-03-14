@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder as ORMQueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -29,6 +30,15 @@ class PropertyRepository extends ServiceEntityRepository
         return $this->findAvailableQuery()
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return Query
+     */
+    public function findAllAvailableQuery(): Query
+    {
+        return $this->findAvailableQuery()
+            ->getQuery();
     }
 
     /**
