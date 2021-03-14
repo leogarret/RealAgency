@@ -28,6 +28,7 @@ class PropertyType extends AbstractType
             ->add('options', EntityType::class, [
                 'class' => Option::class,
                 'choice_label' => 'name',
+                'expanded'  => true,
                 'multiple'  => true
             ])
             ->add('city')
