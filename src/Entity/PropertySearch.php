@@ -16,7 +16,8 @@ class PropertySearch {
     /**
      * @return int|null
      */
-    public function getMaxPrice(): ?int {
+    public function getMaxPrice(): ?int
+    {
         return $this->maxPrice;
     }
 
@@ -24,7 +25,8 @@ class PropertySearch {
      * @param int $maxPrice
      * @return PropertySearch
      */
-    public function setMaxPrice($maxPrice): PropertySearch {
+    public function setMaxPrice(int $maxPrice): PropertySearch
+    {
         $this->maxPrice = $maxPrice;
         return $this;
     }
@@ -32,7 +34,8 @@ class PropertySearch {
     /**
      * @return int|null
      */
-    public function getMinSurface(): ?int {
+    public function getMinSurface(): ?int
+    {
         return $this->minSurface;
     } 
     
@@ -40,7 +43,8 @@ class PropertySearch {
      * @param int $minSurface
      * @return PropertySearch
      */
-    public function setMinSurface($minSurface): PropertySearch {
+    public function setMinSurface(int $minSurface): PropertySearch
+    {
         $this->minSurface = $minSurface;
         return $this;
     }
