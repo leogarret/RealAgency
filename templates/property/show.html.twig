@@ -8,13 +8,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-    
+                    {% if property.filename %}
+                    <img src="{{ vich_uploader_asset(property, 'imageFile') }}" class="card-img-top" alt="{{ property.filename }}" style="object-fit:cover; width:360px; height:230px;">
+                    {% endif %}
                 </div>
                 <div class="col-md-4">
                     <h1>{{ property.title }}</h1>
                     <h2>{{ property.rooms }} pièces - {{ property.surface }} m<sup>2</sup></h2>
                     <div class="text-primary">{{ property.formattedPrice }} €</div>
                     <a href="#" class="btn btn-primary">Contacter l'agence</a>
+                    <div id="contactForm" class="mt-4">
+                        {{ form_start(form) }}
+                        {{ form_row(form.name) }}
+                        <div class="row">
+                            <div class="col">{{ form_row(form.email) }}</div>
+                            <div class="col">{{ form_row(form.phone) }}</div>
+                        </div>
+                        {{ form_rest(form) }}
+                        <div class="form-group">
+                            <button class="btn btn-primary">Envoyer</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
         </div>
